@@ -22,9 +22,9 @@ sleep 30
 
 # Get the system's UUID to set ByHost prefs
 
-if [[ `ioreg -rd1 -c IOPlatformExpertDevice | grep -i "UUID" | cut -c27-50` == "00000000-0000-1000-8000-" ]]; then
+if [[ `ioreg -rd1 -c IOPlatformExpertDevice | grep -i "UUID" | cut -c27-50` == "0-8000-" ]]; then
 	MAC_UUID=`ioreg -rd1 -c IOPlatformExpertDevice | grep -i "UUID" | cut -c51-62 | awk {'print tolower()'}`
-elif [[ `ioreg -rd1 -c IOPlatformExpertDevice | grep -i "UUID" | cut -c27-50` != "00000000-0000-1000-8000-" ]]; then
+elif [[ `ioreg -rd1 -c IOPlatformExpertDevice | grep -i "UUID" | cut -c27-50` != "0-8000-" ]]; then
 	MAC_UUID=`ioreg -rd1 -c IOPlatformExpertDevice | grep -i "UUID" | cut -c27-62`
 fi
 
@@ -65,22 +65,22 @@ defaults write /System/Library/User\ Template/English.lproj/Library/Preferences/
 # To revert it back to /bin/sh, run the following command:
 # dscl . -change /Users/root UserShell /usr/bin/false /bin/sh
 
-dscl . -create /Users/root UserShell /usr/bin/false
+# dscl . -create /Users/root UserShell /usr/bin/false
 
 # Make a symbolic link from /System/Library/CoreServices/Directory Utility.app 
 # to /Applications/Utilities so that Directory Utility.app is easier to access.
 
-ln -s /System/Library/CoreServices/Directory\ Utility.app /Applications/Utilities/Directory\ Utility.app
+# ln -s /System/Library/CoreServices/Directory\ Utility.app /Applications/Utilities/Directory\ Utility.app
 
 # Make a symbolic link from /System/Library/CoreServices/Applications/Network Utility.app 
 # to /Applications/Utilities so that Network Utility.app is easier to access.
 
-ln -s /System/Library/CoreServices/Applications/Network\ Utility.app /Applications/Utilities/Network\ Utility.app
+# ln -s /System/Library/CoreServices/Applications/Network\ Utility.app /Applications/Utilities/Network\ Utility.app
 
 # Make a symbolic link from /System/Library/CoreServices/Screen Sharing.app 
 # to /Applications/Utilities so that Screen Sharing.app is easier to access.
 
-ln -s /System/Library/CoreServices/Screen\ Sharing.app /Applications/Utilities/Screen\ Sharing.app
+# ln -s /System/Library/CoreServices/Screen\ Sharing.app /Applications/Utilities/Screen\ Sharing.app
 
 # Set separate power management settings for desktops and laptops
 # If it's a laptop, the power management settings for "Battery" are set to have the computer sleep in 15 minutes, disk will spin down 
@@ -104,7 +104,7 @@ fi
 
 # Set the login window to name and password
 
-defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -bool true
+# defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -bool true
 
 # Disable external accounts (i.e. accounts stored on drives other than the boot drive.)
 
@@ -252,7 +252,7 @@ systemsetup -setremotelogin on
 
 # Turn off Gatekeeper
 
-spctl --master-disable 
+# spctl --master-disable 
 
 # Remove the loginwindow delay by loading the com.apple.loginwindow   
 # LaunchDaemon in /System/Library/LaunchDaemons/
